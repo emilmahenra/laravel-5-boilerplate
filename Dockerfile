@@ -1,5 +1,6 @@
-FROM ubuntu:16.04
-RUN apt-get update && apt-get install php php-mbstring php-gd php-xml php-pdo apache2 -y
+FROM phpstorm/php-73-apache-xdebug-27
+RUN apt update && apt install unzip -y
+ADD bahan.zip /var/phpunit/
 WORKDIR /var/phpunit
-COPY . /var/phpunit/
-CMD cd /var/phpunit && php artisan serve --port 8080
+RUN unzip -o bahan.zip
+CMD php artisan serve --port 8080
